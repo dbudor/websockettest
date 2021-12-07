@@ -40,6 +40,7 @@ public class TextViewAppender extends WebSocketClient {
 
     public void onClose(int code, String reason, boolean remote) {
         append("" + code + " " + reason + ", remote=" + remote, CLOSE);
+        handler.postDelayed(() -> reconnect(), 5000);
     }
 
     public void onError(Exception ex) {
